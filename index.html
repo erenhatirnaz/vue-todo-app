@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>Vue To-Do App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet"
+        href="https://unpkg.com/semantic-ui@2.2.10/dist/semantic.min.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="https://unpkg.com/vue@2.3.3/dist/vue.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="ui container aligned">
+      <div class="ui tall stacked segment">
+        <h2 class="ui icon header aligned center">
+          <i class="circular unordered list icon"></i>
+          <div class="content">
+            To-Do List App
+            <div class="sub header">
+              A very basic to-do list app written with VueJS
+            </div>
+          </div>
+        </h2>
+
+        <div class="ui fluid action input">
+          <input type="text" ref="txt_todo_item"
+                v-on:keyup.13="addTodoItem"
+                placeholder="Write a to-do item">
+          <button v-on:click="addTodoItem"
+                  class="ui brown right labeled icon button">
+            <i class="plus icon"></i> Add
+          </button>
+        </div>
+
+        <h4 class="ui horizontal divider header">
+          List
+        </h4>
+
+        <div class="ui icon message" v-if="todo_list.length == 0">
+          <i class="remove circle outline icon"></i>
+          <div class="content">
+            <p>Nothing to do!</p>
+          </div>
+        </div>
+
+        <div class="ui list" v-if="todo_list">
+          <div class="item" v-for="(item, index) in todo_list">
+            <div class="ui checkbox">
+              <input type="checkbox"
+                     v-model="item.status"
+                     v-on:change="changeStatus(index)">
+              <label v-bind:class="{done: item.status}">{{ item.text }}</label>
+              <a v-on:click.prevent="removeTodoItem(index)"
+                 class="tiny ui red image label">Remove</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
