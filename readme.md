@@ -6,6 +6,10 @@ The to-do list is storing in the localStorage.
 
 [Live Demo](https://erenhatirnaz.github.io/vue-todo-app)
 
+## Requirements
+
+* Python (for using `SimpleHTTPServer` in `Makefile`)
+
 ## Usage
 
 ```sh
