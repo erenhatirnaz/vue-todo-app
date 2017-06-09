@@ -9,6 +9,10 @@ window.addEventListener('load', () => {
       this.todo_list = this._getTodoList();
     },
 
+    watch: {
+      'todo_list': '_saveTodoList'
+    },
+
     methods: {
       /**
        * @public
@@ -27,7 +31,6 @@ window.addEventListener('load', () => {
         };
 
         this.todo_list.push(todo_item);
-        this._saveTodoList();
         $txt_todo_item.value = "";
       },
 
@@ -41,7 +44,6 @@ window.addEventListener('load', () => {
       changeStatus(index) {
         var currentStatus = this.todo_list[index].status;
         currentStatus = !currentStatus;
-        this._saveTodoList();
       },
 
       /**
@@ -53,7 +55,6 @@ window.addEventListener('load', () => {
        */
       removeTodoItem(index) {
         this.todo_list.splice(index, 1);
-        this._saveTodoList();
       },
 
       /**
